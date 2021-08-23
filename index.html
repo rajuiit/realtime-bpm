@@ -1,0 +1,62 @@
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+
+    <title>Hello, world!</title>
+  </head>
+  <body>
+    
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">Heartbeat Measurement</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="hbm.html">Open Camera for Measuremnt</a>
+            </li>
+            
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+      <div class="card">
+        <div class="card-header">
+          Heart Rate Detection Overview
+        </div>
+        <div class="card-body">
+          <!-- <h5 class="card-title">Special title treatment</h5> -->
+          <p class="card-text">As mentioned in the prelab, the whole idea of heart rate detection is based on the fact that the cardiac pulse flushing blood through our veins can cause changes on our skin color and this change can be captured by ordinary cameras for heart rate measurement.</p>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">Compute Green Channel Mean - The first step is to extract the information we need from the video. We will calculate the green channel average of a certain area of each image frame and use this signal as our input heart beat signal.
+            </li>
+            <li class="list-group-item"> Band-pass Filtering - The heart beat signal we get is probably going to be noisy, caused by white noise and small motions. So we need to band-pass this signal, to suppress all the noises have a very high or very low frequency. Human heart beat is in the range of 50 bpm ~ 140 bpm, so we design our band-pass filter to filter our the signal inside this frequency range.</li>
+            <li class="list-group-item"> Peak Detection - After band-pass filtering, the heart beat signal is going to be very smooth, so we could do a simple peak detection to find the peak locations. What we could do is simply loop through our filtered signal and say, if (signal[i] > signal[i-1] and signal[i] > signal[i+1]), there is a peak at index i.</li>
+            <li class="list-group-item"> Calculate Heart Rate - After we find the peaks, we are ready to calculate the heart rate. For Python part, since this is not a real-time signal, you can just compute how many peaks you find in this 10 second video clip and multiply that number by 6 to calculate the heart rate in bpm. For Javascript part, we are going to record the actual time elapse between consecutive peaks and use a running mean to calculate the heart rate.
+            </li>
+          </ul>   
+          <a href="hbm.html" class="btn btn-primary">Go for Measurement</a>
+        </div>
+      </div>
+    </div>
+   
+    
+   
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+
+  </body>
+</html>
+
